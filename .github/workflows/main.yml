@@ -19,18 +19,18 @@ jobs:
 
     - name: docker build images
       run: |
-        docker build ./picture_api -t root0877/picture_api:latest
-        docker build ./image_miner -t root0877/image_miner:latest
-        docker build ./frontend -t root0877/miner_frontend:latest
-        docker build ./nginx -t root0877/miner_reverseproxy:latest
+        docker build ./picture_api -t root0877/picture_api:v1.0
+        docker build ./image_miner -t root0877/image_miner:v1.0
+        docker build ./frontend -t root0877/miner_frontend:v1.0
+        docker build ./nginx -t root0877/miner_reverseproxy:v1.0
         
 
     - name: docker push
       run: |
-        docker push root0877/picture_api:latest
-        docker push root0877/image_miner:latest
-        docker push root0877/miner_frontend:latest
-        docker push root0877/miner_reverseproxy:latest
+        docker push root0877/picture_api:v1.0
+        docker push root0877/image_miner:v1.0
+        docker push root0877/miner_frontend:v1.0
+        docker push root0877/miner_reverseproxy:v1.0
 
     - name: Install kubectl
       uses: azure/setup-kubectl@v2.0
