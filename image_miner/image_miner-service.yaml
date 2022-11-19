@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: image-miner
   labels:
-    run: image-miner
+    app: image-miner
 spec:
   ports:
   - port: 8000
     protocol: TCP
   selector:
-    run: image-miner
+    app: image-miner

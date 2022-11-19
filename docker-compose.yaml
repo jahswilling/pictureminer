@@ -6,7 +6,7 @@ services:
     image: picture_api
     ports:
       - 9000:9000
-    container_name: picture_api
+    container_name: picture-api
     restart: always
 
   image_miner:
@@ -15,7 +15,7 @@ services:
     image: image_miner
     ports:
       - 8000:8000
-    container_name: image_miner
+    container_name: image-miner
     restart: always
 
   frontend:
@@ -30,9 +30,9 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - 80:80
+      - 8080:80
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       # - react_build:/var/www/react
     depends_on:
       - picture_api

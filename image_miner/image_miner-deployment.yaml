@@ -5,7 +5,7 @@ metadata:
   labels:
     app: image-miner
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: image-miner

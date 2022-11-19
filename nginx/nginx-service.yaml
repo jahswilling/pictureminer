@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: miner-reverseproxy
   labels:
-    run: miner-reverseproxy
+    app: miner-reverseproxy
 spec:
   ports:
   - port: 80
     protocol: TCP
   selector:
-    run: miner-reverseproxy
+    app: miner-reverseproxy

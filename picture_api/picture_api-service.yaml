@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: picture-api
   labels:
-    run: picture-api
+    app: picture-api
 spec:
   ports:
   - port: 9000
     protocol: TCP
   selector:
-    run: picture-api
+    app: picture-api
