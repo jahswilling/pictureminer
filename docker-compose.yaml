@@ -1,0 +1,40 @@
+version: "3"
+services:
+  picture_api:
+    build:
+      context: ./picture_api
+    image: picture_api
+    ports:
+      - 9000:9000
+    container_name: picture_api
+    restart: always
+
+  image_miner:
+    build:
+      context: ./image_miner
+    image: image_miner
+    ports:
+      - 8000:8000
+    container_name: image_miner
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+    image: frontend
+    ports:
+      - 3000:3000
+    container_name: frontend
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      # - react_build:/var/www/react
+    depends_on:
+      - picture_api
+      - image_miner
+    
