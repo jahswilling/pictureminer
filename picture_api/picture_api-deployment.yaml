@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: picture-api
+  labels:
+    app: picture-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: picture-api
+  template:
+    metadata:
+      labels:
+        app: picture-api
+    spec:
+      containers:
+      - image: root0877/picture_api:latest
+        name: picture-api
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        resources:
+          requests:
+            memory: "1000Mi"
+            cpu: "250m"
+          limits:
+            memory: "2000Mi"
+            cpu: "500m"   

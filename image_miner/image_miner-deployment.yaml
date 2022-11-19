@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-miner
+  labels:
+    app: image-miner
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: image-miner
+  template:
+    metadata:
+      labels:
+        app: image-miner
+    spec:
+      containers:
+      - image: root0877/image_miner:latest
+        name: image-miner
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            memory: "1000Mi"
+            cpu: "250m"
+          limits:
+            memory: "2000Mi"
+            cpu: "500m"   

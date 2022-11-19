@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  AWS_BUCKET: mined-pictures
+  AWS_PROFILE: default
+  AWS_REGION: us-west-1
+  
+  URL: http://localhost:80
+  PORT: "80"
+metadata:
+  name: env-config

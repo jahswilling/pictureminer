@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: miner-reverseproxy
+  labels:
+    app: miner-reverseproxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: miner-reverseproxy
+  template:
+    metadata:
+      labels:
+        app: miner-reverseproxy
+    spec:
+      containers:
+      - image: root0877/miner_reverseproxy:latest
+        name: miner-reverseproxy
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "1000Mi"
+            cpu: "250m"
+          limits:
+            memory: "2000Mi"
+            cpu: "500m"   
