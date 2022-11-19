@@ -29,7 +29,7 @@ jobs:
 
     - name: docker push
       env:
-        IMAGE_TAG: v2
+        IMAGE_TAG: ${{ github.sha }}
       run: |
         docker push root0877/picture_api:$IMAGE_TAG
         docker push root0877/image_miner:$IMAGE_TAG
@@ -53,8 +53,10 @@ jobs:
       run: aws eks update-kubeconfig --name pictureMinerCluster --region us-east-1
 
     - name: Deploy to EKS
+      env:
+        IMAGE_TAG: ${{ github.sha }}
       run: |
-        kubectl set image deployment frontend frontend=root0877/miner_frontend:v1.0
-        kubectl set image deployment image_miner image_miner=root0877/image_miner:v1.0
-        kubectl set image deployment picture_api picture_api=root0877/picture_api:v1.0
+        kubectl set image deployment frontend frontend=root0877/miner_frontend:$IMAGE_TAG
+        kubectl set image deployment image_miner image_miner=root0877/image_miner:$IMAGE_TAG
+        kubectl set image deployment picture_api picture_api=root0877/picture_api:$IMAGE_TAG
         
