@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Set correct environment
+      run: |
+        TAG=${{ steps.tag.outputs.tag }}
+        echo "TAG=$TAG" >> "$GITHUB_ENV"
     - name: docker login
       env:
         DOCKER_USER: ${{ secrets.DOCKER_HUB_USERNAME }}   
@@ -18,29 +22,29 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: docker build picture_api
       run: |
-        docker build ./picture_api -t root0877/picture_api:${{ steps.meta.outputs.tags }}
+        docker build ./picture_api -t root0877/picture_api:${{ env.TAG }}
     - name: docker build image_miner
       run: |
-        docker build ./image_miner -t root0877/image_miner:${{ steps.meta.outputs.tags }}
+        docker build ./image_miner -t root0877/image_miner:${{ env.TAG }}
     - name: docker build miner_frontend
       run: |
-        docker build ./frontend -t root0877/miner_frontend:${{ steps.meta.outputs.tags }}
+        docker build ./frontend -t root0877/miner_frontend:${{ env.TAG }}
     - name: docker build miner_reverseproxy
       run: |
-        docker build ./nginx -t root0877/miner_reverseproxy:${{ steps.meta.outputs.tags }}
+        docker build ./nginx -t root0877/miner_reverseproxy:${{ env.TAG }}
         
     - name: docker push
       run: |
-        docker push root0877/picture_api:${{ steps.meta.outputs.tags }}
+        docker push root0877/picture_api:${{ env.TAG }}
     - name: docker push
       run: |
-        docker push root0877/image_miner:${{ steps.meta.outputs.tags }}
+        docker push root0877/image_miner:${{ env.TAG }}
     - name: docker push
       run: |
-        docker push root0877/miner_frontend:${{ steps.meta.outputs.tags }}
+        docker push root0877/miner_frontend:${{ env.TAG }}
     - name: docker push
       run: |
-        docker push root0877/miner_reverseproxy:${{ steps.meta.outputs.tags }}
+        docker push root0877/miner_reverseproxy:${{ env.TAG }}
 
     - name: Install kubectl
       uses: azure/setup-kubectl@v2.0
