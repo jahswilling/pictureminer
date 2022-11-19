@@ -4,11 +4,10 @@ FROM golang:latest
 
 WORKDIR /app
 
-COPY go.mod ./
+COPY . .
 
 RUN go mod download
 
-COPY . .
 
 RUN go build -o /pictureminer
 
