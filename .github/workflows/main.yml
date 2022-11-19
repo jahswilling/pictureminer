@@ -13,51 +13,24 @@ jobs:
     - name: docker login
       env:
         DOCKER_USER: ${{ secrets.DOCKER_HUB_USERNAME }}   
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} 
-        
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}  
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: docker build picture_api
-      env:
-        Tag: ${{ steps.tag.outputs.tag }}
+
+    - name: docker build images
       run: |
-        docker build ./picture_api -t root0877/picture_api:$Tag
-    - name: docker build image_miner
-      env:
-        Tag: ${{ steps.tag.outputs.tag }}
-      run: |
-        docker build ./image_miner -t root0877/image_miner:$Tag
-    - name: docker build miner_frontend
-      env:
-        Tag: ${{ steps.tag.outputs.tag }}
-      run: |
-        docker build ./frontend -t root0877/miner_frontend:$Tag
-    - name: docker build miner_reverseproxy
-      env:
-        Tag: ${{ steps.tag.outputs.tag }}
-      run: |
-        docker build ./nginx -t root0877/miner_reverseproxy:$Tag
+        docker build ./picture_api -t root0877/picture_api:latest
+        docker build ./image_miner -t root0877/image_miner:latest
+        docker build ./frontend -t root0877/miner_frontend:latest
+        docker build ./nginx -t root0877/miner_reverseproxy:latest
         
+
     - name: docker push
-      env:
-          Tag: ${{ steps.tag.outputs.tag }}
       run: |
-        docker push root0877/picture_api:$Tag
-    - name: docker push
-      env:
-        Tag: ${{ steps.tag.outputs.tag }}
-      run: |
-        docker push root0877/image_miner:$Tag
-    - name: docker push
-      env:
-        Tag: ${{ steps.tag.outputs.tag }}
-      run: |
-        docker push root0877/miner_frontend:$Tag
-    - name: docker push
-      env:
-        Tag: ${{ steps.tag.outputs.tag }}
-      run: |
-        docker push root0877/miner_reverseproxy:$Tag
+        docker push root0877/picture_api:latest
+        docker push root0877/image_miner:latest
+        docker push root0877/miner_frontend:latest
+        docker push root0877/miner_reverseproxy:latest
 
     - name: Install kubectl
       uses: azure/setup-kubectl@v2.0
