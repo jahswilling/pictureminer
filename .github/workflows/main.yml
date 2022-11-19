@@ -18,8 +18,21 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: docker build picture_api
       run: |
-        docker build ./picture_api -t root0877/picture_api:1.0.0
+        docker build ./picture_api -t root0877/picture_api:latest
+    - name: docker build image_miner
+      run: |
+        docker build ./image_miner -t root0877/image_miner:latest
+    - name: docker build miner_frontend
+      run: |
+        docker build ./frontend -t root0877/miner_frontend:latest
+        
     - name: docker push
       run: |
-        docker push root0877/picture_api:1.0.0
+        docker push root0877/picture_api:latest
+    - name: docker push
+      run: |
+        docker push root0877/image_miner:latest
+    - name: docker push
+      run: |
+        docker push root0877/miner_frontend:latest
         
