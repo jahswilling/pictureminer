@@ -18,29 +18,29 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: docker build picture_api
       run: |
-        docker build ./picture_api -t root0877/picture_api:latest
+        docker build ./picture_api -t root0877/picture_api:${{ steps.meta.outputs.tags }}
     - name: docker build image_miner
       run: |
-        docker build ./image_miner -t root0877/image_miner:latest
+        docker build ./image_miner -t root0877/image_miner:${{ steps.meta.outputs.tags }}
     - name: docker build miner_frontend
       run: |
-        docker build ./frontend -t root0877/miner_frontend:latest
+        docker build ./frontend -t root0877/miner_frontend:${{ steps.meta.outputs.tags }}
     - name: docker build miner_reverseproxy
       run: |
-        docker build ./nginx -t root0877/miner_reverseproxy:latest
+        docker build ./nginx -t root0877/miner_reverseproxy:${{ steps.meta.outputs.tags }}
         
     - name: docker push
       run: |
-        docker push root0877/picture_api:latest
+        docker push root0877/picture_api:${{ steps.meta.outputs.tags }}
     - name: docker push
       run: |
-        docker push root0877/image_miner:latest
+        docker push root0877/image_miner:${{ steps.meta.outputs.tags }}
     - name: docker push
       run: |
-        docker push root0877/miner_frontend:latest
+        docker push root0877/miner_frontend:${{ steps.meta.outputs.tags }}
     - name: docker push
       run: |
-        docker push root0877/miner_reverseproxy:latest
+        docker push root0877/miner_reverseproxy:${{ steps.meta.outputs.tags }}
 
     - name: Install kubectl
       uses: azure/setup-kubectl@v2.0
