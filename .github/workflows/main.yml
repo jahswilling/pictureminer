@@ -21,10 +21,10 @@ jobs:
       env:
         IMAGE_TAG: v2
       run: |
-        docker build ./picture_api -t root0877/picture_api:$IMAGE_TAG .
-        docker build ./image_miner -t root0877/image_miner:$IMAGE_TAG .
-        docker build ./frontend -t root0877/miner_frontend:$IMAGE_TAG .
-        docker build ./nginx -t root0877/miner_reverseproxy:$IMAGE_TAG .
+        docker build ./picture_api -t root0877/picture_api:$IMAGE_TAG 
+        docker build ./image_miner -t root0877/image_miner:$IMAGE_TAG 
+        docker build ./frontend -t root0877/miner_frontend:$IMAGE_TAG 
+        docker build ./nginx -t root0877/miner_reverseproxy:$IMAGE_TAG 
         
 
     - name: docker push
