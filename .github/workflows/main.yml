@@ -25,6 +25,9 @@ jobs:
     - name: docker build miner_frontend
       run: |
         docker build ./frontend -t root0877/miner_frontend:latest
+    - name: docker build miner_reverseproxy
+      run: |
+        docker build ./nginx -t root0877/miner_reverseproxy:latest
         
     - name: docker push
       run: |
@@ -35,4 +38,7 @@ jobs:
     - name: docker push
       run: |
         docker push root0877/miner_frontend:latest
+    - name: docker push
+      run: |
+        docker push root0877/miner_reverseproxy:latest
         
