@@ -26,6 +26,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./picture_api/Dockerfile
+          file: ./image_miner/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/picture_api:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/image_miner:latest
