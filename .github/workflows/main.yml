@@ -56,7 +56,7 @@ jobs:
       env:
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        kubectl set image deployment frontend frontend=root0877/miner_frontend:$IMAGE_TAG
-        kubectl set image deployment image_miner image_miner=root0877/image_miner:$IMAGE_TAG
-        kubectl set image deployment picture_api picture_api=root0877/picture_api:$IMAGE_TAG
+        kubectl set image deployment/frontend-deployment frontend=root0877/miner_frontend:$IMAGE_TAG
+        kubectl set image deployment/image_miner-deployment image_miner=root0877/image_miner:$IMAGE_TAG
+        kubectl set image deployment/picture_api-deployment picture_api=root0877/picture_api:$IMAGE_TAG
         
