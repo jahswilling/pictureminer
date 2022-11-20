@@ -1,4 +1,4 @@
-package mongodb
+package mongo
 
 import (
 	"context"
@@ -25,13 +25,13 @@ func ConnectToDB() *mongo.Client {
 	logger := utility.NewLogger()
 	uri := config.GetConfig().Mongodb.Url
 	mongo_connection := options.Client().ApplyURI(uri)
-	mongoClient, err := mongo.Connect(ctx, mongo_connection)
+	mongoclient, err := mongo.Connect(ctx, mongo_connection)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// PINGING THE CONNECTION
-	err = mongoClient.Ping(ctx, readpref.Primary())
+	err = mongoclient.Ping(ctx, readpref.Primary())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -40,12 +40,5 @@ func ConnectToDB() *mongo.Client {
 	fmt.Println("MONGO CONNECTION ESTABLISHED")
 	logger.Info("MONGO CONNECTION ESTABLISHED")
 
-	mongoclient = mongoClient
-	return mongoClient
-}
-
-// getting database collections
-func GetCollection(client *mongo.Client, databaseName, collectionName string) *mongo.Collection {
-	collection := client.Database(databaseName).Collection(collectionName)
-	return collection
+	return mongoclient
 }
