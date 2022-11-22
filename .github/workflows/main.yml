@@ -24,12 +24,11 @@ jobs:
       run: |
         docker build ./picture_api -t root0877/picture_api:$IMAGE_TAG 
         docker build ./image_miner -t root0877/image_miner:$IMAGE_TAG 
-        docker build ./nginx -t root0877/miner_reverseproxy:$IMAGE_TAG 
         
 
     - name: docker push
       run: |
-        docker push root0877/picture_api:$IMAGE_TAG
-        docker push root0877/image_miner:$IMAGE_TAG
-        docker push root0877/miner_reverseproxy:$IMAGE_TAG
+        docker push root0877/picture_api:latest
+        docker push root0877/image_miner:latest
+        
 
