@@ -15,7 +15,7 @@ spec:
         app: picture-api
     spec:
       containers:
-      - image: root0877/picture_api:v1
+      - image: root0877/picture_api:fa81c23c6936314fd87bfe077f03a44a57acea18
         name: picture-api
         imagePullPolicy: Always
         ports:
